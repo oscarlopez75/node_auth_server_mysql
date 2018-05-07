@@ -1,0 +1,145 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Server
+# during dev, should point to your local machine
+host: localhost:4001
+# basePath prefixes all resource paths
+basePath: /
+#
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /swagger:
+    x-swagger-pipe: swagger_raw
+
+  /:
+    get:
+      description: Returns welcome message
+      operationId: Welcome
+      responses:
+        "200":
+          description: Welcome message
+          schema:
+            $ref: "#/definitions/Welcome"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+
+  /getuser:
+    #x-swagger-router-controller: login
+    post:
+      description: Returns username, access and token if user found
+      operationId: getuser
+      parameters:
+        - name: userinfo
+          required: true
+          in: body
+          description: The user
+          schema:
+            $ref: "#/definitions/UserBody"
+      responses:
+        "200":
+          description: User token
+          schema:
+            $ref: "#/definitions/UserToken"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+
+  /adduser:
+    post:
+      description: Adds a new user
+      operationId: adduser
+      parameters:
+        - name: useradding
+          required: true
+          in: body
+          description: Adding users
+          schema:
+            $ref: "#/definitions/AddUserBody"
+      responses:
+        "200":
+          description: User added
+          schema:
+            $ref: "#/definitions/UserAdded"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+
+
+# complex objects have schema definitions
+definitions:
+
+  UserBody:
+    type: object
+    properties:
+      login:
+        type: string
+        description: User name
+      password:
+        type: string
+        description: User Password
+
+  AddUserBody:
+    type: object
+    properties:
+      login:
+        type: string
+        description: User name
+      password:
+        type: string
+        description: User Password
+      newFname:
+        type: string
+        description: New User Fname
+      newLname:
+        type: string
+        description: New User Lname
+      newLogin:
+        type: string
+        description: New User Login
+      newPassword:
+        type: string
+        description: New User Password
+      newRole:
+        type: string
+        description: New User Role
+
+  UserToken:
+    type: object
+    properties:
+      jwt:
+        type: string
+        description: User Token
+
+  UserAdded:
+    type: object
+    properties:
+      message:
+        type: string
+        description: User Addition Status
+
+  Welcome:
+    type: object
+    properties:
+      message:
+        type: string
+        description: Welcome
+
+  ErrorResponse:
+    type: object
+    properties:
+      message:
+        type: string
