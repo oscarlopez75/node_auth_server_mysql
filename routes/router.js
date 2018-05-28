@@ -18,7 +18,7 @@ router.post('/getuser', (req, res) => {
                 login: req.body.login,
                 role: mess
               },
-              process.env.JWT_SECRET, { expiresIn: 30 })
+              process.env.JWT_SECRET, { expiresIn: 3600 })
         });
       }else{
         res.status(401).json({
