@@ -18,7 +18,7 @@
     "mysql": "^2.15.0",
     "swagger-tools": "^0.10.3",
     "swagger-ui": "^3.14.1",
-    "swagger-ui-express": "^3.0.8",
+    "swagger-ui-express": "^4.3.0",
     "yamljs": "^0.3.0"
   }
 }
