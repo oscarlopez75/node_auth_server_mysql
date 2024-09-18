@@ -13,11 +13,11 @@
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "dotenv": "^5.0.1",
-    "express": "^4.16.3",
+    "express": "^4.20.0",
     "jsonwebtoken": "^8.2.1",
     "mysql": "^2.15.0",
     "swagger-tools": "^0.10.3",
-    "swagger-ui": "^3.14.1",
+    "swagger-ui": "^5.17.11",
     "swagger-ui-express": "^3.0.8",
     "yamljs": "^0.3.0"
   }
